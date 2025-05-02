@@ -141,6 +141,55 @@ void displayEmployees() {
                employees[i].name, employees[i].position, employees[i].net_salary);
     }
 }
+void searchEmployee() {
+    int id;
+    printf("Enter ID to search: ");
+    scanf("%d", &id);
+    int index = findEmployee(id);
+    if (index != -1) {
+        Employee e = employees[index];
+        printf("Found: %s (%s) - Net Salary: %.2f\n", e.name, e.position, e.net_salary);
+    } else {
+        printf("Employee not found.\n");
+    }
+}
+
+void updateEmployee() {
+    int id;
+    printf("Enter ID to update: ");
+    scanf("%d", &id);
+    int index = findEmployee(id);
+    if (index != -1) {
+        printf("Updating employee %s\n", employees[index].name);
+        addEmployee();
+        for (int i = index; i < employee_count - 1; i++) {
+            employees[i] = employees[i + 1];
+        }
+        employee_count--;
+        saveToFile();
+        saveToCSV();
+    } else {
+        printf("Employee not found.\n");
+    }
+}
+
+void deleteEmployee() {
+    int id;
+    printf("Enter ID to delete: ");
+    scanf("%d", &id);
+    int index = findEmployee(id);
+    if (index != -1) {
+        for (int i = index; i < employee_count - 1; i++) {
+            employees[i] = employees[i + 1];
+        }
+        employee_count--;
+        saveToFile();
+        saveToCSV();
+        printf("Employee deleted.\n");
+    } else {
+        printf("Employee not found.\n");
+    }
+}
 
 int login() {
     char pass[20];
