@@ -253,7 +253,7 @@ int main() {
             case 6: system("cls");sortBySalary(); break;
             case 7: system("cls");sortByName();break;
             case 8: printf("Exiting...\n"); break;
-            default: printf("Invalid choice. Try again.\n");
+            default: printf("Invalid choice please. Try again.\n");
         }
     } while (choice != 8);
     return 0;
